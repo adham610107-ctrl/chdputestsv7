@@ -1,0 +1,68 @@
+:root {
+    --primary: #2B3674;
+    --accent: #4318FF;
+    --success: #05CD99;
+    --error: #EE5D50;
+    --bg: #F4F7FE;
+    --card: #FFFFFF;
+    --text: #2B3674;
+}
+
+.dark-mode {
+    --bg: #0B1437;
+    --card: #111C44;
+    --text: #FFFFFF;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); transition: 0.3s; overflow-x: hidden; }
+
+.hidden { display: none !important; }
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+/* 1. Welcome Screen (Siz xohlagan aniq dizayn) */
+.hero-bg { position: fixed; inset: 0; background: url('bino.png') no-repeat center center/cover; z-index: -1; }
+.hero-overlay { height: 100vh; background: rgba(11, 20, 55, 0.85); display: flex; align-items: center; justify-content: center; padding: 20px; }
+.hero-card { width: 100%; max-width: 500px; text-align: center; padding: 40px 30px; border-radius: 30px; }
+.glass-effect { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.2); color: white; }
+
+.hero-badge { background: var(--accent); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-bottom: 15px; }
+.main-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+.hero-subtitle { font-size: 1rem; opacity: 0.9; margin-bottom: 30px; line-height: 1.5; }
+
+.premium-input { width: 100%; padding: 18px; border-radius: 15px; border: none; margin-bottom: 15px; font-size: 1rem; text-align: center; background: white; color: black; }
+.btn-start { width: 100%; padding: 18px; border-radius: 15px; background: var(--accent); color: white; border: none; font-weight: 700; font-size: 1.1rem; cursor: pointer; }
+
+/* 2. Dashboard Grid */
+.dash-header { margin-bottom: 30px; }
+.category-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.cat-btn { background: var(--card); padding: 20px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.05); color: var(--text); font-weight: 700; cursor: pointer; transition: 0.2s; box-shadow: 5px 5px 20px rgba(0,0,0,0.02); }
+.cat-btn:hover { transform: translateY(-5px); border-color: var(--accent); }
+.btn-special, .btn-outline, .btn-error { grid-column: span 2; }
+
+/* 3. Test Area (Kichik Map Integratsiyasi) */
+.test-layout { display: flex; flex-direction: column; gap: 20px; }
+.map-container { overflow-x: auto; white-space: nowrap; padding: 10px 0; -webkit-overflow-scrolling: touch; }
+.mini-map { display: flex; gap: 8px; }
+.dot { min-width: 35px; height: 35px; border-radius: 10px; background: var(--card); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(0,0,0,0.1); cursor: pointer; }
+.dot.active-dot { border: 2px solid var(--accent); color: var(--accent); }
+.dot.correct { background: var(--success); color: white; border: none; }
+.dot.wrong { background: var(--error); color: white; border: none; }
+
+.q-card-premium { background: var(--card); padding: 30px; border-radius: 25px; min-height: 280px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.option-btn { width: 100%; padding: 15px; margin-top: 12px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05); background: var(--bg); text-align: left; font-size: 1rem; cursor: pointer; color: var(--text); font-weight: 500; }
+.option-btn.correct-ans { background: #d1fae5; border-color: var(--success); color: #065f46; font-weight: 700; }
+.option-btn.wrong-ans { background: #fee2e2; border-color: var(--error); color: #991b1b; }
+
+@media (min-width: 768px) {
+    .category-grid { grid-template-columns: repeat(4, 1fr); }
+    .test-layout { flex-direction: row; }
+    .map-container { width: 200px; overflow: visible; }
+    .mini-map { display: grid; grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Animations */
+.slide-up { animation: slideUp 0.6s ease-out; }
+@keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.gravity-fall { animation: fallDown 1.5s forwards ease-in; pointer-events: none; }
+@keyframes fallDown { to { transform: translateY(100vh) rotate(20deg); opacity: 0; } }
